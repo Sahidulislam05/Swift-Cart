@@ -1,27 +1,67 @@
 //  Highlight active page in navbar
 
-function highlightActivePage() {
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+// function highlightActivePage() {
+//   const currentPage = window.location.pathname.split("/").pop() || "index.html";
 
-  const navLinks = document.querySelectorAll(".menu a");
+//   const navLinks = document.querySelectorAll(".menu a");
+
+//   navLinks.forEach((link) => {
+//     const href = link.getAttribute("href");
+
+//     // Check if link matches current page
+//     if (
+//       href === currentPage ||
+//       (currentPage === "" && href === "index.html") ||
+//       (currentPage === "index.html" && href === "index.html")
+//     ) {
+//       // Add active classes
+//       link.classList.add("active", "text-primary", "font-bold");
+//     } else {
+//       // Remove active classes
+//       link.classList.remove("active", "text-primary", "font-bold");
+//     }
+//   });
+// }
+
+function highlightActivePage() {
+  // Get full current URL
+  const currentURL = window.location.href;
+  const currentPath = window.location.pathname;
+
+  console.log("Full URL:", currentURL);
+  console.log("Path:", currentPath);
+
+  // Get all nav links
+  const navLinks = document.querySelectorAll(".menu a[href]");
 
   navLinks.forEach((link) => {
-    const href = link.getAttribute("href");
+    // Remove active classes
+    link.classList.remove("active", "text-primary", "font-bold");
 
-    // Check if link matches current page
-    if (
-      href === currentPage ||
-      (currentPage === "" && href === "index.html") ||
-      (currentPage === "index.html" && href === "index.html")
-    ) {
-      // Add active classes
+    const href = link.getAttribute("href");
+    const fullLinkURL = new URL(href, window.location.origin).href;
+
+    // Check multiple conditions
+    const isActive =
+      currentURL === fullLinkURL ||
+      currentURL.endsWith(href) ||
+      currentPath.endsWith(href) ||
+      (href === "index.html" &&
+        (currentPath === "/" || currentPath === "/index.html")) ||
+      (href === "/" && (currentPath === "/" || currentPath === "/index.html"));
+
+    if (isActive) {
       link.classList.add("active", "text-primary", "font-bold");
-    } else {
-      // Remove active classes
-      link.classList.remove("active", "text-primary", "font-bold");
+      console.log("Active:", href);
     }
   });
 }
+
+// Call on page load
+document.addEventListener("DOMContentLoaded", highlightActivePage);
+
+// Call on page load
+document.addEventListener("DOMContentLoaded", highlightActivePage);
 
 // Call on page load
 document.addEventListener("DOMContentLoaded", highlightActivePage);
