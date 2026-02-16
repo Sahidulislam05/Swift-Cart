@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - SwiftCart</title>
+    <!-- Tailwind-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="bg-base-100 shadow-sm">
+      <div class="navbar container mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <a href="index.html" class="text-2xl font-bold text-blue-400"
+            >SwiftCart</a
+          >
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1 font-semibold">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <button
+            onclick="openCartModal()"
+            class="btn btn-ghost btn-circle relative"
+          >
+            <i class="fa-solid fa-cart-shopping text-xl"></i>
+            <span
+              id="cartCount"
+              class="badge badge-primary badge-sm absolute -top-1 -right-1 hidden"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Page Header -->
+      <section class="bg-gradient-to-r from-primary to-secondary py-10">
+        <div class="container mx-auto px-4 text-center">
+          <div class="mb-4">
+            <i class="fa-solid fa-envelope text-6xl opacity-80"></i>
+          </div>
+          <h1 class="text-3xl md:text-5xl font-bold mb-4">Get In Touch</h1>
+          <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto">
+            Have a question? We'd love to hear from you. Send us a message and
+            we'll respond as soon as possible.
+          </p>
+        </div>
+      </section>
+
+      <!-- Contact Info Cards -->
+      <section class="container mx-auto px-4 -mt-12 relative z-10 mb-20 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Address Card -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            <div class="card-body items-center text-center">
+              <div
+                class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="fa-solid fa-location-dot text-3xl text-primary"></i>
+              </div>
+              <h3 class="card-title text-lg">Visit Us</h3>
+              <p class="text-gray-600">
+                123 Commerce Street<br />
+                Dhaka, 1205<br />
+                Bangladesh
+              </p>
+            </div>
+          </div>
+
+          <!-- Phone Card -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            <div class="card-body items-center text-center">
+              <div
+                class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="fa-solid fa-phone text-3xl text-secondary"></i>
+              </div>
+              <h3 class="card-title text-lg">Call Us</h3>
+              <p class="text-gray-600">
+                +1 (555) 123-4567<br />
+                +1 (555) 987-6543<br />
+                Mon-Fri 9am-6pm EST
+              </p>
+            </div>
+          </div>
+
+          <!-- Email Card -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            <div class="card-body items-center text-center">
+              <div
+                class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="fa-solid fa-envelope text-3xl text-accent"></i>
+              </div>
+              <h3 class="card-title text-lg">Email Us</h3>
+              <p class="text-gray-600">
+                support@swiftcart.com<br />
+                sales@swiftcart.com<br />
+                24/7 Support Available
+              </p>
+            </div>
+          </div>
+
+          <!-- Social Card -->
+          <div
+            class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow"
+          >
+            <div class="card-body items-center text-center">
+              <div
+                class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mb-4"
+              >
+                <i class="fa-solid fa-share-nodes text-3xl text-success"></i>
+              </div>
+              <h3 class="card-title text-lg">Follow Us</h3>
+              <div class="flex gap-3 mt-2">
+                <button class="btn btn-circle btn-sm btn-outline">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </button>
+                <button class="btn btn-circle btn-sm btn-outline">
+                  <i class="fa-brands fa-twitter"></i>
+                </button>
+                <button class="btn btn-circle btn-sm btn-outline">
+                  <i class="fa-brands fa-instagram"></i>
+                </button>
+                <button class="btn btn-circle btn-sm btn-outline">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Form & Map Section -->
+      <section class="container mx-auto px-4 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Contact Form -->
+          <div>
+            <div class="mb-8">
+              <div class="badge badge-primary badge-lg mb-4">Send Message</div>
+              <h2 class="text-4xl font-bold mb-4">Drop Us A Line</h2>
+              <p class="text-lg text-gray-600">
+                Fill out the form below and we'll get back to you within 24
+                hours.
+              </p>
+            </div>
+
+            <form id="contactForm" class="space-y-6">
+              <!-- Name Input -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Your Name *</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="John Doe"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+
+              <!-- Email Input -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Email Address *</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  class="input input-bordered w-full"
+                  required
+                />
+              </div>
+
+              <!-- Phone Input -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Phone Number</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 (555) 123-4567"
+                  class="input input-bordered w-full"
+                />
+              </div>
+
+              <!-- Subject Input -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Subject *</span>
+                </label>
+                <select
+                  name="subject"
+                  class="select select-bordered w-full"
+                  required
+                >
+                  <option disabled selected>Select a subject</option>
+                  <option>General Inquiry</option>
+                  <option>Product Question</option>
+                  <option>Order Support</option>
+                  <option>Technical Issue</option>
+                  <option>Partnership Opportunity</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <!-- Message Input -->
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text font-semibold">Your Message *</span>
+                </label>
+                <textarea
+                  name="message"
+                  class="textarea textarea-bordered h-32"
+                  placeholder="Tell us how we can help you..."
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary btn-block btn-lg">
+                <i class="fa-solid fa-paper-plane mr-2"></i>
+                Send Message
+              </button>
+
+              <!-- Success Message (Hidden by default) -->
+              <div id="successMessage" class="alert alert-success hidden">
+                <i class="fa-solid fa-check-circle"></i>
+                <span
+                  >Message sent successfully! We'll get back to you soon.</span
+                >
+              </div>
+            </form>
+          </div>
+
+          <!-- Map & Additional Info -->
+          <div>
+            <div class="mb-8">
+              <div class="badge badge-secondary badge-lg mb-4">Location</div>
+              <h2 class="text-4xl font-bold mb-4">Find Us Here</h2>
+              <p class="text-lg text-gray-600">
+                Visit our headquarters or reach out through any of our contact
+                channels.
+              </p>
+            </div>
+
+            <!-- Map Placeholder -->
+            <div
+              class="bg-base-200 rounded-2xl h-96 flex items-center justify-center mb-6 overflow-hidden"
+            >
+              <!-- Embed Google Maps or any map service -->
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1234567890123!5m2!1sen!2sbd"
+                width="100%"
+                height="100%"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="card bg-base-100 shadow-xl">
+              <div class="card-body">
+                <h3 class="card-title">
+                  <i class="fa-solid fa-clock text-primary mr-2"></i>
+                  Business Hours
+                </h3>
+                <div class="divider my-2"></div>
+                <div class="space-y-2">
+                  <div class="flex justify-between">
+                    <span class="font-semibold">Monday - Friday:</span>
+                    <span>9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-semibold">Saturday:</span>
+                    <span>10:00 AM - 4:00 PM</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="font-semibold">Sunday:</span>
+                    <span class="text-error">Closed</span>
+                  </div>
+                </div>
+                <div class="alert alert-info mt-4">
+                  <i class="fa-solid fa-info-circle"></i>
+                  <span class="text-sm"
+                    >Customer support is available 24/7 via email</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="bg-white py-20">
+        <div class="container mx-auto px-4">
+          <div class="text-center mb-12">
+            <div class="badge badge-primary badge-lg mb-4">FAQ</div>
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              Quick answers to common questions. Can't find what you're looking
+              for? Contact us directly!
+            </p>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <div class="join join-vertical w-full">
+              <!-- FAQ 1 -->
+              <div
+                class="collapse collapse-arrow join-item border border-base-300"
+              >
+                <input type="radio" name="faq-accordion" checked />
+                <div class="collapse-title text-xl font-medium">
+                  <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+                  What are your shipping options?
+                </div>
+                <div class="collapse-content">
+                  <p class="text-gray-600">
+                    We offer standard shipping (5-7 business days), express
+                    shipping (2-3 business days), and same-day delivery in
+                    select areas. Free shipping on orders over $50.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FAQ 2 -->
+              <div
+                class="collapse collapse-arrow join-item border border-base-300"
+              >
+                <input type="radio" name="faq-accordion" />
+                <div class="collapse-title text-xl font-medium">
+                  <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+                  What is your return policy?
+                </div>
+                <div class="collapse-content">
+                  <p class="text-gray-600">
+                    We offer a 30-day return policy for most items. Products
+                    must be in original condition with tags attached. Refunds
+                    are processed within 5-7 business days.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FAQ 3 -->
+              <div
+                class="collapse collapse-arrow join-item border border-base-300"
+              >
+                <input type="radio" name="faq-accordion" />
+                <div class="collapse-title text-xl font-medium">
+                  <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+                  Do you ship internationally?
+                </div>
+                <div class="collapse-content">
+                  <p class="text-gray-600">
+                    Yes! We ship to over 100 countries worldwide. International
+                    shipping rates and delivery times vary by location. Check
+                    our shipping page for details.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FAQ 4 -->
+              <div
+                class="collapse collapse-arrow join-item border border-base-300"
+              >
+                <input type="radio" name="faq-accordion" />
+                <div class="collapse-title text-xl font-medium">
+                  <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+                  How can I track my order?
+                </div>
+                <div class="collapse-content">
+                  <p class="text-gray-600">
+                    Once your order ships, you'll receive a tracking number via
+                    email. You can also track your order by logging into your
+                    account and viewing your order history.
+                  </p>
+                </div>
+              </div>
+
+              <!-- FAQ 5 -->
+              <div
+                class="collapse collapse-arrow join-item border border-base-300"
+              >
+                <input type="radio" name="faq-accordion" />
+                <div class="collapse-title text-xl font-medium">
+                  <i class="fa-solid fa-circle-question text-primary mr-2"></i>
+                  What payment methods do you accept?
+                </div>
+                <div class="collapse-content">
+                  <p class="text-gray-600">
+                    We accept all major credit cards (Visa, MasterCard, American
+                    Express), PayPal, Apple Pay, Google Pay, and cryptocurrency
+                    payments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Still Have Questions -->
+            <div class="text-center mt-12">
+              <p class="text-lg text-gray-600 mb-4">Still have questions?</p>
+              <a href="#contactForm" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-comments mr-2"></i>
+                Contact Support
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <!-- Footer - Light Theme -->
+    <footer class="bg-base-200">
+      <!-- Main Footer Content -->
+      <div class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- Brand Section -->
+          <div class="space-y-4">
+            <a href="index.html" class="flex items-center gap-2">
+              <i class="fa-solid fa-cart-shopping text-3xl text-primary"></i>
+              <span class="text-3xl font-bold text-gray-800">SwiftCart</span>
+            </a>
+            <p class="text-gray-600 leading-relaxed">
+              Your one-stop shop for the best collection of products, unbeatable
+              prices, and a seamless shopping experience.
+            </p>
+
+            <!-- Social Media Links -->
+            <div class="flex gap-3 pt-4">
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-facebook-f text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-twitter text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-instagram text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-linkedin-in text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-link text-primary"></i>
+              Quick Links
+            </h6>
+            <nav class="flex flex-col gap-2">
+              <a
+                href="index.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Home
+              </a>
+              <a
+                href="products.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Products
+              </a>
+              <a
+                href="about.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                About Us
+              </a>
+              <a
+                href="contact.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Contact
+              </a>
+            </nav>
+          </div>
+
+          <!-- Customer Service -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-headset text-primary"></i>
+              Customer Service
+            </h6>
+            <nav class="flex flex-col gap-2">
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Track Order
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Shipping Info
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Returns & Refunds
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                FAQs
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Size Guide
+              </a>
+            </nav>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-address-book text-primary"></i>
+              Contact Info
+            </h6>
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Address</p>
+                  <p class="text-sm text-gray-600">Dhaka, 1205 Bangladesh</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-phone text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Phone</p>
+                  <p class="text-sm text-gray-600">+1 (555) 123-4567</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Email</p>
+                  <p class="text-sm text-gray-600">support@swiftcart.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-clock text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Hours</p>
+                  <p class="text-sm text-gray-600">Mon-Fri: 9AM - 6PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="bg-base-300 border-t border-gray-300">
+        <div class="container mx-auto px-4 py-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <!-- Copyright -->
+            <p class="text-sm text-gray-600 text-center md:text-left">
+              © 2026 <span class="text-primary font-semibold">SwiftCart</span>.
+              All rights reserved.
+            </p>
+
+            <!-- Payment Methods -->
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+              <span class="text-sm text-gray-600 mr-2">We Accept:</span>
+              <div class="flex gap-2">
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-visa text-xl text-blue-600"></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i
+                    class="fa-brands fa-cc-mastercard text-xl text-red-600"
+                  ></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-paypal text-xl text-blue-500"></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-amex text-xl text-blue-400"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legal Links -->
+            <nav
+              class="flex flex-wrap justify-center md:justify-end gap-4 text-sm"
+            >
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Privacy Policy
+              </a>
+              <span class="text-gray-400">|</span>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Terms of Service
+              </a>
+              <span class="text-gray-400">|</span>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Cookie Policy
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <dialog id="cartModal" class="modal">
+      <div class="modal-box w-11/12 max-w-2xl">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+
+        <h3 class="font-bold text-2xl mb-6">Shopping Cart</h3>
+
+        <!-- Cart Items Container -->
+        <div id="cartItems" class="space-y-4 max-h-96 overflow-y-auto mb-6">
+          <!-- Cart items will be loaded here -->
+        </div>
+
+        <!-- Cart Total -->
+        <div class="border-t pt-4">
+          <div class="flex justify-between items-center text-xl font-bold">
+            <span>Total:</span>
+            <span id="cartTotal" class="text-primary">$0.00</span>
+          </div>
+          <button class="btn btn-primary btn-block mt-4">
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Contact Form Handler -->
+    <script>
+      // Handle contact form submission
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = new FormData(this);
+          const data = Object.fromEntries(formData);
+
+          console.log("Contact form submitted:", data);
+
+          // Show success message
+          const successMessage = document.getElementById("successMessage");
+          successMessage.classList.remove("hidden");
+
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            successMessage.classList.add("hidden");
+          }, 5000);
+
+          // Reset form
+          this.reset();
+
+          // In real app, you would send this to your backend
+          // Example: fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
+        });
+    </script>
+  </body>
+</html>

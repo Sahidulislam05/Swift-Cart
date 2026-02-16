@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products - SwiftCart</title>
+    <!-- Tailwind-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar (Same as index.html) -->
+    <nav class="bg-base-100 shadow-sm">
+      <div class="navbar container mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li><a href="index.html">Home</a></li>
+              <li><a href="products.html">Products</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <a href="index.html" class="text-2xl font-bold text-blue-400"
+            >SwiftCart</a
+          >
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1 font-semibold">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end gap-2">
+          <!-- Cart Button -->
+          <button
+            onclick="openCartModal()"
+            class="btn btn-ghost btn-circle relative"
+          >
+            <i class="fa-solid fa-cart-shopping text-xl"></i>
+            <span
+              id="cartCount"
+              class="badge badge-primary badge-sm absolute -top-1 -right-1 hidden"
+              >0</span
+            >
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 my-10">
+      <!-- Page Header -->
+      <div class="text-center mb-10">
+        <h1 class="text-5xl font-bold mb-4">Our Products</h1>
+        <p class="text-xl text-gray-600">Explore our amazing collection</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <div id="categoryButtons" class="flex flex-wrap justify-center gap-3">
+          <!-- Categories will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="flex justify-center my-20">
+        <span class="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+
+      <!-- Products Grid -->
+      <div
+        id="productsContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        <!-- Products -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center my-20">
+        <i class="fa-solid fa-box-open text-6xl text-gray-300 mb-4"></i>
+        <p class="text-xl text-gray-500">No products found</p>
+      </div>
+    </main>
+
+    <!-- Product Details Modal -->
+    <dialog id="productModal" class="modal">
+      <div class="modal-box w-11/12 max-w-3xl">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+
+        <div id="modalContent" class="flex flex-col md:flex-row gap-6">
+          <!-- Modal content -->
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+    <!-- Cart Modal -->
+    <dialog id="cartModal" class="modal">
+      <div class="modal-box w-11/12 max-w-2xl">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+
+        <h3 class="font-bold text-2xl mb-6">Shopping Cart</h3>
+
+        <!-- Cart Items Container -->
+        <div id="cartItems" class="space-y-4 max-h-96 overflow-y-auto mb-6">
+          <!-- Cart items will be loaded here -->
+        </div>
+
+        <!-- Cart Total -->
+        <div class="border-t pt-4">
+          <div class="flex justify-between items-center text-xl font-bold">
+            <span>Total:</span>
+            <span id="cartTotal" class="text-primary">$0.00</span>
+          </div>
+          <button class="btn btn-primary btn-block mt-4">
+            Proceed to Checkout
+          </button>
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+    <!-- Footer -->
+    <footer class="bg-base-200">
+      <div class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <!-- Brand Section -->
+          <div class="space-y-4">
+            <a href="index.html" class="flex items-center gap-2">
+              <i class="fa-solid fa-cart-shopping text-3xl text-primary"></i>
+              <span class="text-3xl font-bold text-gray-800">SwiftCart</span>
+            </a>
+            <p class="text-gray-600 leading-relaxed">
+              Your one-stop shop for the best collection of products, unbeatable
+              prices, and a seamless shopping experience.
+            </p>
+
+            <!-- Social Media Links -->
+            <div class="flex gap-3 pt-4">
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-facebook-f text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-twitter text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-instagram text-xl"></i>
+              </a>
+              <a
+                href="#"
+                class="btn btn-circle btn-ghost hover:bg-primary hover:text-white transition-all"
+              >
+                <i class="fa-brands fa-linkedin-in text-xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-link text-primary"></i>
+              Quick Links
+            </h6>
+            <nav class="flex flex-col gap-2">
+              <a
+                href="index.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Home
+              </a>
+              <a
+                href="products.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Products
+              </a>
+              <a
+                href="about.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                About Us
+              </a>
+              <a
+                href="contact.html"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Contact
+              </a>
+            </nav>
+          </div>
+
+          <!-- Customer Service -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-headset text-primary"></i>
+              Customer Service
+            </h6>
+            <nav class="flex flex-col gap-2">
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Track Order
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Shipping Info
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Returns & Refunds
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                FAQs
+              </a>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary transition-colors"
+              >
+                <i class="fa-solid fa-chevron-right text-xs mr-2"></i>
+                Size Guide
+              </a>
+            </nav>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="space-y-4">
+            <h6
+              class="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-address-book text-primary"></i>
+              Contact Info
+            </h6>
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-location-dot text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Address</p>
+                  <p class="text-sm text-gray-600">Dhaka, 1205 Bangladesh</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-phone text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Phone</p>
+                  <p class="text-sm text-gray-600">+1 (555) 123-4567</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-envelope text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Email</p>
+                  <p class="text-sm text-gray-600">support@swiftcart.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-clock text-primary mt-1"></i>
+                <div>
+                  <p class="font-semibold text-gray-800">Hours</p>
+                  <p class="text-sm text-gray-600">Mon-Fri: 9AM - 6PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="bg-base-300 border-t border-gray-300">
+        <div class="container mx-auto px-4 py-6">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <!-- Copyright -->
+            <p class="text-sm text-gray-600 text-center md:text-left">
+              © 2026 <span class="text-primary font-semibold">SwiftCart</span>.
+              All rights reserved.
+            </p>
+
+            <!-- Payment Methods -->
+            <div class="flex items-center gap-2 flex-wrap justify-center">
+              <span class="text-sm text-gray-600 mr-2">We Accept:</span>
+              <div class="flex gap-2">
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-visa text-xl text-blue-600"></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i
+                    class="fa-brands fa-cc-mastercard text-xl text-red-600"
+                  ></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-paypal text-xl text-blue-500"></i>
+                </div>
+                <div class="badge badge-outline badge-lg">
+                  <i class="fa-brands fa-cc-amex text-xl text-blue-400"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Legal Links -->
+            <nav
+              class="flex flex-wrap justify-center md:justify-end gap-4 text-sm"
+            >
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Privacy Policy
+              </a>
+              <span class="text-gray-400">|</span>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Terms of Service
+              </a>
+              <span class="text-gray-400">|</span>
+              <a
+                href="#"
+                class="link link-hover text-gray-600 hover:text-primary"
+              >
+                Cookie Policy
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
