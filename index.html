@@ -485,6 +485,26 @@
       </div>
     </footer>
 
+    <!-- Product Details Modal -->
+    <dialog id="productModal" class="modal">
+      <div class="modal-box w-11/12 max-w-3xl">
+        <form method="dialog">
+          <button
+            class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          >
+            ✕
+          </button>
+        </form>
+
+        <div id="modalContent" class="flex flex-col md:flex-row gap-6">
+          <!-- Modal content will be loaded by JavaScript -->
+        </div>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
     <!-- Cart Modal -->
     <dialog id="cartModal" class="modal">
       <div class="modal-box w-11/12 max-w-2xl">
